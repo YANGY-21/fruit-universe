@@ -493,3 +493,119 @@ body {
     flex-direction: column;
   }
 }
+
+/* ===== PLANET ===== */
+.planet-node circle,
+.planet-node text {
+  transition: opacity 0.15s;
+}
+
+/* 星球公民证 */
+.citizen-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #efefef;
+  border-radius: 18px;
+  padding: 0 0 14px;
+  overflow: hidden;
+  font-family: -apple-system, 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
+}
+.cc-stripe {
+  height: 5px;
+}
+.cc-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px 0;
+}
+.cc-logo {
+  font-size: 20px;
+}
+.cc-head-text {
+  line-height: 1.3;
+}
+.cc-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.cc-sub {
+  font-size: 9px;
+  color: #bbb;
+  letter-spacing: 1px;
+}
+.cc-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+}
+.cc-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  flex-shrink: 0;
+}
+.cc-id {
+  line-height: 1.4;
+}
+.cc-name {
+  font-size: 24px;
+  font-weight: 700;
+}
+.cc-tag {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+.cc-sub2 {
+  font-size: 10px;
+  color: #bbb;
+  margin-top: 2px;
+}
+.cc-stamp {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  font-size: 54px;
+  opacity: 0.12;
+  transform: rotate(-18deg);
+}
+.cc-grid {
+  margin: 0 18px;
+  border-top: 1px dashed #eee;
+}
+.cc-cell {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed #eee;
+  font-size: 12px;
+}
+.cc-cell:last-child {
+  border-bottom: none;
+}
+.cc-cell label {
+  flex-shrink: 0;
+  width: 52px;
+  font-size: 10px;
+  color: #bbb;
+  letter-spacing: 1px;
+}
+.cc-cell span {
+  color: #444;
+  line-height: 1.5;
+}
+.cc-foot {
+  text-align: center;
+  font-size: 9px;
+  color: #ccc;
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
