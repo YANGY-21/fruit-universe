@@ -7,17 +7,27 @@ import {
   MAX_ROUNDS,
   type JudgeResult,
 } from '@/lib/judge';
+import { sql } from '@/lib/db';
 
-// 简易内存日预算（MVP 妥协：serverless 冷启动会清零，上生产换成 DB 计数，见 ai_usage 表）
-const DAY_MS = 24 * 60 * 60 * 1000;
+// 日预算存 DB（ai_usage 表），重启/冷启动不清零
 const DAILY_LIMIT = 800;
-let budget = { day: new Date().toDateString(), calls: 0 };
 
-function takeFromBudget(): boolean {
-  const today = new Date().toDateString();
-  if (budget.day !== today) budget = { day: today, calls: 0 };
-  budget.calls++;
-  return budget.calls <= DAILY_LIMIT;
+async function takeFromBudget(): Promise<boolean> {
+  try {
+    // 用北京时间算"今天"，这样预算在凌晨零点重置，而不是 UTC 零点
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Shanghai' });
+    await sql`
+      INSERT INTO ai_usage (day, calls)
+      VALUES (${today}, 1)
+      ON CONFLICT (day) DO UPDATE SET calls = ai_usage.calls + 1
+    `;
+    const rows = await sql`SELECT calls FROM ai_usage WHERE day = ${today}`;
+    return Number(rows[0]?.calls ?? 0) <= DAILY_LIMIT;
+  } catch (err) {
+    // 计数连不上 DB 时放行，别让考官因为预算表挂掉
+    console.error('budget error:', err);
+    return true;
+  }
 }
 
 interface JudgeBody {
@@ -26,7 +36,7 @@ interface JudgeBody {
 }
 
 export async function POST(req: Request) {
-  if (!takeFromBudget()) {
+  if (!(await takeFromBudget())) {
     return NextResponse.json({ ok: false, error: 'rate_limit' }, { status: 429 });
   }
 

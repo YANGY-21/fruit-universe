@@ -10,10 +10,10 @@ export type JudgeResult =
   | { type: 'verdict'; fruit: FruitKey; reason: string; confidence: number }
   | { type: 'invalid' };
 
-/** 把一个水果压成一行精简人设（diagnosis 首句 = 人格最浓缩的一句） */
+/** 把一个水果压成一行精简人设：人格要点 + 水果象征（让 verdict 能解释「为什么是它」） */
 export function buildPersona(f: Fruit): string {
   const firstLine = f.diagnosis.replace(/<br>/g, '').split(/[。！？]/)[0];
-  return `${f.emoji} ${f.name}（${f.tag}）：${f.traits.map((t) => t.title).join(' / ')}；${firstLine}`;
+  return `${f.emoji} ${f.name}（${f.tag}）：${f.traits.map((t) => t.title).join(' / ')}；${firstLine}；象征：${f.why}`;
 }
 
 export function buildSystemPrompt(): string {
@@ -27,7 +27,7 @@ export function buildSystemPrompt(): string {
     '1. 每轮只问一个问题，根据回答逐渐收窄；问题要口语化、贴近中国大学生、带一点"确诊式"戏谑感。',
     '2. 每次调用只输出一个严格 JSON 对象，不要输出任何其他文字。',
     '3. 如果还需追问，输出：{"type":"question","question":"追问的话","reason":"为什么这样问"}',
-    '4. 如果已能判断，输出：{"type":"verdict","fruit":"<水果key>","reason":"完整的推理过程，列出对方哪些回答指向这种人格","confidence":0.85}',
+    '4. 如果已能判断，输出：{"type":"verdict","fruit":"<水果key>","reason":"完整的推理过程：先列出对方哪些回答指向这种人格，再结合该水果的象征，明确写出「你之所以是[水果名]，是因为[象征]」，把对方的行为和水果寓意连起来","confidence":0.85}',
     '5. fruit 字段只能是以下之一：' + FRUIT_KEYS.join(', '),
     `6. 最多追问到累计 ${MAX_ROUNDS} 轮就必须给出 verdict。`,
   ].join('\n');

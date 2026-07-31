@@ -66,6 +66,14 @@ export default function FruitResult({ fruit, mode, reason }: Props) {
         </div>
       </div>
 
+      {/* 为什么是这种水果 */}
+      <div className="card" style={{ padding: '20px' }}>
+        <div className="why-card">
+          <h3>为什么是 {f.emoji} {f.name}？</h3>
+          <div>{f.why}</div>
+        </div>
+      </div>
+
       {/* AI 推理横幅 */}
       {mode === 'ai' && reason && (
         <div className="card" style={{ padding: '16px 20px' }}>
@@ -158,8 +166,11 @@ export default function FruitResult({ fruit, mode, reason }: Props) {
         </div>
 
         <div className="btn-row">
-          <button className="btn btn-primary" onClick={() => (window.location.href = '/')}>
-            重测
+          <button className="btn btn-secondary" onClick={() => (window.location.href = '/')}>
+            返回首页
+          </button>
+          <button className="btn btn-primary" onClick={() => (window.location.href = '/judge')}>
+            和 AI 考官聊聊
           </button>
         </div>
       </div>

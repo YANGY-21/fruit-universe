@@ -7,7 +7,7 @@ interface Props {
 export default function ChatBubble({ role, children }: Props) {
   return (
     <div className={`chat-bubble ${role === 'user' ? 'chat-user' : 'chat-ai'}`}>
-      {role === 'assistant' && <span className="chat-emoji">🍉</span>}
+      {role === 'assistant' && <span className="chat-emoji">🤖</span>}
       <div className="chat-text">{children}</div>
     </div>
   );

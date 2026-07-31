@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ALL_QS, type Question } from '@/data/questions';
 import { scoreTest, shuffle, QUIZ_COUNT } from '@/lib/scoring';
+import { saveResult } from '@/lib/saveResult';
 
 const RESULT_KEY = 'fruit-universe:result';
 
@@ -34,6 +35,7 @@ export default function QuizPage() {
           RESULT_KEY,
           JSON.stringify({ fruit: top, mode: 'classic', scores })
         );
+        saveResult({ fruit: top, mode: 'classic', scores });
         router.push(`/result?fruit=${top}&mode=classic`);
       } else {
         setCi(ci + 1);

@@ -17,7 +17,7 @@ export default function Home() {
       </div>
 
       <div className="card" style={{ padding: '22px 24px' }}>
-        <div style={{ fontSize: 17, fontWeight: 700 }}>AI 考官 🍉</div>
+        <div style={{ fontSize: 17, fontWeight: 700 }}>AI 考官 🤖</div>
         <div style={{ fontSize: 13, color: '#aaa', lineHeight: 1.8, margin: '8px 0 16px' }}>
           不答题，跟 AI 聊几句。它根据你的回答实时追问，最后推理出你是哪种水果——更像真人面试，结果更稳。
         </div>

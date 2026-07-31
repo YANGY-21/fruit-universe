@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import ChatBubble from '@/components/ChatBubble';
 import { MAX_ROUNDS } from '@/lib/judge';
+import { saveResult } from '@/lib/saveResult';
 
 interface Msg {
   role: 'user' | 'assistant';
@@ -47,6 +48,7 @@ export default function JudgePage() {
           'fruit-universe:result',
           JSON.stringify({ fruit: data.fruit, mode: 'ai' })
         );
+        saveResult({ fruit: data.fruit, mode: 'ai' });
         const reason = data.reason ? encodeURIComponent(data.reason) : '';
         router.push(`/result?fruit=${data.fruit}&mode=ai&reason=${reason}`);
       }

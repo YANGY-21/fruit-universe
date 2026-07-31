@@ -237,6 +237,26 @@ body {
   margin-top: 14px;
 }
 
+/* 为什么是这种水果 */
+.why-card {
+  text-align: left;
+}
+.why-card h3 {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.why-card > div {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #555;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
 /* AI 推理横幅 */
 .ai-reason {
   text-align: left;
