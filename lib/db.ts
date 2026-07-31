@@ -9,7 +9,8 @@ function getClient() {
   if (!client) {
     const url = process.env.POSTGRES_URL;
     if (!url) throw new Error('POSTGRES_URL 未配置');
-    client = neon(url);
+    // 粘贴连接串时可能带进换行/空格，URL 不允许空白，去掉再解析
+    client = neon(url.replace(/\s+/g, ''));
   }
   return client;
 }

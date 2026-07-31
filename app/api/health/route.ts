@@ -7,18 +7,16 @@ export async function GET() {
   const hasDeepseekKey = !!process.env.DEEPSEEK_API_KEY;
 
   let db: 'ok' | 'missing_env' | 'error' = 'missing_env';
-  let dbDetail: { code?: string; message?: string } | null = null;
+  let dbCode: string | null = null;
   if (hasPostgresUrl) {
     try {
       await sql`SELECT 1`;
       db = 'ok';
     } catch (err) {
+      // 完整错误只进服务端日志，不回传给浏览器（错误文本可能含连接串/密钥）
       console.error('health db error:', err);
       db = 'error';
-      dbDetail = {
-        code: (err as { code?: string })?.code,
-        message: String((err as { message?: string })?.message ?? err).slice(0, 300),
-      };
+      dbCode = (err as { code?: string })?.code ?? null;
     }
   }
 
@@ -26,6 +24,6 @@ export async function GET() {
     ok: db === 'ok',
     env: { postgres_url: hasPostgresUrl, deepseek_key: hasDeepseekKey },
     db,
-    dbDetail,
+    dbCode,
   });
 }
