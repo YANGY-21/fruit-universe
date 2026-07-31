@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 水果星球 Fruit Planet
 
-## Getting Started
+把"水果人格测试"做成一个 Next.js 全栈作品集项目。测测你是哪种水果，还能和 AI 考官聊聊，让它用几个问题锁定你的水果人格。
 
-First, run the development server:
+线上地址：https://fruit-universe.vercel.app
+
+## 功能
+
+- **经典测试**：18 道题随机抽 8 道，加权计分算出你的水果人格（14 种）
+- **AI 考官**：和 AI 聊几句，它自适应追问，最终给出诊断 + 完整推理过程
+- **为什么是这种水果**：每种人格都有对应的象征解读
+- **数据落库**：测试结果存入 Postgres，支持省份维度（为后续"全国水果人格地图"做准备）
+
+## 技术栈
+
+- Next.js 16（App Router + TypeScript）
+- DeepSeek API（AI 考官，key 只在服务端）
+- Vercel Postgres（Neon，`@neondatabase/serverless`）
+
+## 本地运行
 
 ```bash
+npm install
+cp .env.local.example .env.local   # 填入 DEEPSEEK_API_KEY 和 POSTGRES_URL
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 目录结构
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+  api/judge/     AI 考官接口（服务端校验 + 日预算）
+  api/results/   结果落库接口
+  quiz/          经典测试页
+  judge/         AI 考官聊天页
+  result/        结果页
+components/      复用组件（ChatBubble / FruitResult / VisitCounter）
+data/            14 种人格数据、题库
+lib/             评分算法、AI 状态机、数据库连接
+scripts/         init-db.mjs（建表脚本）
+```
