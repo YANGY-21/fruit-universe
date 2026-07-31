@@ -389,6 +389,73 @@ body {
   text-align: center;
 }
 
+/* Chat (AI 考官) */
+.chat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 180px;
+  max-height: 52vh;
+  overflow-y: auto;
+}
+.chat-bubble {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.chat-bubble.chat-user {
+  justify-content: flex-end;
+}
+.chat-emoji {
+  font-size: 18px;
+  line-height: 1.6;
+}
+.chat-text {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.chat-ai .chat-text {
+  background: var(--bg);
+  color: #333;
+  border-top-left-radius: 4px;
+}
+.chat-user .chat-text {
+  background: var(--ink);
+  color: #fff;
+  border-top-right-radius: 4px;
+}
+.chat-typing {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 4px 2px;
+}
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.chat-input-row input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fafafa;
+  color: var(--ink);
+}
+.chat-input-row input:focus {
+  border-color: var(--ink);
+}
+.chat-input-row input:disabled {
+  opacity: 0.5;
+}
+
 .footer {
   text-align: center;
   font-size: 11px;
