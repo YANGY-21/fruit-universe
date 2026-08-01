@@ -65,6 +65,24 @@ export const FRUIT_COLORS: Record<FruitKey, string> = {
   durian: '#8d6e3f',
 };
 
+/** 每种水果人格在全人类中的占比（%），14 种合计 100% */
+export const FRUIT_RARITY: Record<FruitKey, number> = {
+  apple: 8,
+  orange: 9,
+  banana: 10,
+  strawberry: 7,
+  watermelon: 8,
+  blueberry: 4,
+  peach: 6,
+  lemon: 5,
+  kiwi: 7,
+  pineapple: 5,
+  mango: 9,
+  cherry: 8,
+  avocado: 11,
+  durian: 3,
+};
+
 export const FRUITS: Record<FruitKey, Fruit> = {
   apple: {
     key: 'apple',

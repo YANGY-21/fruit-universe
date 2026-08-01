@@ -1,7 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { FRUITS, FRUIT_KEYS, FRUIT_COLORS, type FruitKey } from '@/data/fruits';
+import { FRUITS, FRUIT_KEYS, FRUIT_COLORS, FRUIT_RARITY, type FruitKey } from '@/data/fruits';
 
 interface Props {
   fruit: FruitKey;
@@ -39,6 +39,10 @@ export default function PersonaCard({ fruit }: Props) {
       </div>
 
       <div className="cc-grid">
+        <div className="cc-cell">
+          <label>人格占比</label>
+          <span>全人类仅 {FRUIT_RARITY[fruit]}% 是{f.name}型</span>
+        </div>
         <div className="cc-cell">
           <label>诊断</label>
           <span>{f.diagnosis.split('<br>')[1] ?? f.diagnosis}</span>

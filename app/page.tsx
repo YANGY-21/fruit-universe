@@ -29,7 +29,7 @@ export default function Home() {
       <div className="card" style={{ padding: '22px 24px' }}>
         <div style={{ fontSize: 17, fontWeight: 700 }}>星球相性图 🪐</div>
         <div style={{ fontSize: 13, color: '#aaa', lineHeight: 1.8, margin: '8px 0 16px' }}>
-          14 种水果人格围成一圈，绿线连的是合得来的，红线是合不来的。点一个水果，看它的「星球公民证」还能导出图片。
+          14 种水果人格围成一圈，绿线连的是合得来的，红线是合不来的。点一个水果，看它的「星球公民证」。
         </div>
         <Link href="/planet" className="btn btn-secondary" style={{ textDecoration: 'none' }}>
           逛逛星球
