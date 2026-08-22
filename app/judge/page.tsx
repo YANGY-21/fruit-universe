@@ -85,16 +85,11 @@ export default function JudgePage() {
 
   return (
     <div className="container">
-      <div className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px' }}>
-        <div>
-          <div style={{ fontWeight: 700 }}>AI 考官</div>
-          <div style={{ fontSize: 12, color: '#bbb', marginTop: 2 }}>
-            {round > MAX_ROUNDS ? `第 ${MAX_ROUNDS}/${MAX_ROUNDS} 轮` : `第 ${round}/${MAX_ROUNDS} 轮`} · 聊几句就能锁定你的水果人格
-          </div>
+      <div className="card" style={{ padding: '16px 20px' }}>
+        <div style={{ fontWeight: 700 }}>AI 考官</div>
+        <div style={{ fontSize: 12, color: '#bbb', marginTop: 2 }}>
+          {round > MAX_ROUNDS ? `第 ${MAX_ROUNDS}/${MAX_ROUNDS} 轮` : `第 ${round}/${MAX_ROUNDS} 轮`} · 聊几句就能锁定你的水果人格
         </div>
-        <a href="/" className="btn btn-outline" style={{ width: 'auto', padding: '8px 14px', fontSize: 13, textDecoration: 'none' }}>
-          返回
-        </a>
       </div>
 
       <div className="card" style={{ padding: '16px 16px 20px' }}>

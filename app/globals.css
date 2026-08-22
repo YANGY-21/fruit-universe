@@ -20,6 +20,45 @@ body {
   padding: 24px 16px 40px;
   -webkit-font-smoothing: antialiased;
 }
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin: -24px -16px 18px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #f0f0ee;
+}
+.site-nav-inner {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 13px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-nav-logo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.2px;
+}
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.site-nav-link {
+  font-size: 13px;
+  color: #999;
+  text-decoration: none;
+  transition: color 0.12s;
+}
+.site-nav-link.active {
+  color: var(--ink);
+  font-weight: 700;
+}
 .container {
   max-width: 440px;
   margin: 0 auto;

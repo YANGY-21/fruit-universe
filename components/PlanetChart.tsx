@@ -99,7 +99,7 @@ export default function PlanetChart({ selected, onSelect }: Props) {
         return (
           <g
             key={k}
-            onClick={() => onSelect(isSel ? null : k)}
+            onPointerUp={() => onSelect(isSel ? null : k)}
             className={`planet-node${isSel ? ' selected' : ''}${dim ? ' dim' : ''}`}
             style={{ cursor: 'pointer' }}
           >

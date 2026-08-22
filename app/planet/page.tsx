@@ -10,14 +10,9 @@ export default function PlanetPage() {
 
   return (
     <div className="container">
-      <div className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px' }}>
-        <div>
-          <div style={{ fontWeight: 700 }}>星球相性图 🪐</div>
-          <div style={{ fontSize: 12, color: '#bbb', marginTop: 2 }}>绿线相性好 · 红线相性紧张 · 点水果看公民证</div>
-        </div>
-        <a href="/" className="btn btn-outline" style={{ width: 'auto', padding: '8px 14px', fontSize: 13, textDecoration: 'none' }}>
-          返回
-        </a>
+      <div className="card" style={{ padding: '16px 20px' }}>
+        <div style={{ fontWeight: 700 }}>星球相性图 🪐</div>
+        <div style={{ fontSize: 12, color: '#bbb', marginTop: 2 }}>绿线相性好 · 红线相性紧张 · 点水果看公民证</div>
       </div>
 
       <div className="card" style={{ padding: '12px 12px 8px' }}>
