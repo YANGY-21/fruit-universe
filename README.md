@@ -2,7 +2,8 @@
 
 把"水果人格测试"做成一个 Next.js 全栈作品集项目。测测你是哪种水果，还能和 AI 考官聊聊，让它用几个问题锁定你的水果人格。
 
-线上地址：https://fruit-universe.vercel.app
+线上地址（腾讯云 EdgeOne，国内可直连）：待部署后填入
+国际版（Vercel，国内网络不可达）：https://fruit-universe.vercel.app
 
 ## 功能
 
@@ -15,15 +16,27 @@
 
 - Next.js 16（App Router + TypeScript）
 - DeepSeek API（AI 考官，key 只在服务端）
-- Vercel Postgres（Neon，`@neondatabase/serverless`）
+- Neon Postgres（`@neondatabase/serverless`）
 
 ## 本地运行
 
 ```bash
 npm install
-cp .env.local.example .env.local   # 填入 DEEPSEEK_API_KEY 和 POSTGRES_URL
+cp .env.example .env.local   # 填入 DEEPSEEK_API_KEY 和 POSTGRES_URL
 npm run dev
 ```
+
+## 部署（腾讯云 EdgeOne Pages）
+
+EdgeOne Pages 是国内可直连的"Vercel 替代"。本仓库是标准 Next.js，零 Vercel 依赖，直接平台导入 GitHub 仓库即可。
+
+1. 控制台 Git 导入 `YANGY-21/fruit-universe`
+2. 配两个环境变量（构建时会烘焙进函数）：
+   - `DEEPSEEK_API_KEY`（DeepSeek 平台创建）
+   - `POSTGRES_URL`（Neon 连接串，国内直连可达）
+3. 部署后用 `curl /api/health` 验证
+
+> 注意：环境变量改完要**重新部署**才生效；连接串里不要带换行符。Vercel 版保留不删，作为国际访问备份。
 
 ## 目录结构
 
